@@ -20,6 +20,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "localforage": "^1.7.3",
         "uuid": "^3.3.2"
     }
 }

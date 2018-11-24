@@ -73,6 +73,16 @@
                         </div>
                         <div class="col-md-3"></div>
                     </div>
+                    <div id="indexeddb" class="row container-fluid invisible">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="text-left">
+                                <h4>IndexedDB</h4>
+                            </div>
+                            <div class="msgbox" class="text-left"></div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
                 </div>
             </div>
         </div>

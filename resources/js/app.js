@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 const uuidv4 = require('uuid/v4');
+const localforage = require('localforage');
 
 // window.Vue = require('vue');
 
@@ -73,4 +74,24 @@ if (window.sessionStorage) {
         $msgbox.html('<p>Your browser has identified you with the ID: ' + browserId + '</p>'
             + '<p>Clear your browser data then refresh this page.</p>');
     }
+}
+
+if(localforage.supports(localforage.INDEXEDDB)) {
+    let $indexeddbDiv = $('#indexeddb');
+    $indexeddbDiv.removeClass('invisible');
+    let $msgbox = $indexeddbDiv.find('.msgbox');
+
+    localforage.getItem(BROWSER_ID_KEY).then(function(browserId){
+        if(browserId === null) {
+            browserId = uuidv4();
+            localforage.setItem(BROWSER_ID_KEY, browserId);
+
+            $msgbox.html('<p>Your browser did not identify you.</p><p>We have set the following ID on your browser: '
+                + browserId + '</p>');
+        }
+        else {
+            $msgbox.html('<p>Your browser has identified you with the ID: ' + browserId + '</p>'
+                + '<p>Clear your browser data then refresh this page.</p>');
+        }
+    });
 }
