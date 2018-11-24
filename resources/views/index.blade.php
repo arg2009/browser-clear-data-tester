@@ -6,7 +6,7 @@
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>Clear Browser Data Tester</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -30,7 +30,9 @@
                 <div class="row container-fluid">
                     <div class="row container-fluid">
                         <div class="col-md-12">
-                            <h1 class="text-center">Browser Data Checker</h1>
+                            <h1 class="text-center">Clear Browser Data Tester</h1>
+                            <p class="text-center">Use this tool to ensure that your browser is clearing all the web data that can be used
+                            to uniquely track you.</p>
                         </div>
                     </div>
                     <div class="row container-fluid">
