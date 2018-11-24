@@ -6,8 +6,9 @@
  */
 
 require('./bootstrap');
+const uuidv4 = require('uuid/v4');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,7 +18,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
@@ -28,6 +29,48 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
+
+const BROWSER_ID_KEY = 'data-checking-web-storage-key';
+
+if (window.localStorage) {
+    let $localStorageDiv = $('#local-storage');
+    $localStorageDiv.removeClass('invisible');
+    let $msgbox = $localStorageDiv.find('.msgbox');
+
+    let browserId = window.localStorage.getItem(BROWSER_ID_KEY);
+
+    if(browserId === null) {
+        browserId = uuidv4();
+        window.localStorage.setItem(BROWSER_ID_KEY, browserId);
+
+        $msgbox.html('<p>Your browser did not identify you.</p><p>We have set the following ID on your browser: '
+            + browserId + '</p>');
+    }
+    else {
+        $msgbox.html('<p>Your browser has identified you with the ID: ' + browserId + '</p>'
+            + '<p>Clear your browser data then refresh this page.</p>');
+    }
+}
+
+if (window.sessionStorage) {
+    let $sessionStorageDiv = $('#session-storage');
+    $sessionStorageDiv.removeClass('invisible');
+    let $msgbox = $sessionStorageDiv.find('.msgbox');
+
+    let browserId = window.sessionStorage.getItem(BROWSER_ID_KEY);
+
+    if(browserId === null) {
+        browserId = uuidv4();
+        window.sessionStorage.setItem(BROWSER_ID_KEY, browserId);
+
+        $msgbox.html('<p>Your browser did not identify you.</p><p>We have set the following ID on your browser: '
+            + browserId + '</p>');
+    }
+    else {
+        $msgbox.html('<p>Your browser has identified you with the ID: ' + browserId + '</p>'
+            + '<p>Clear your browser data then refresh this page.</p>');
+    }
+}
